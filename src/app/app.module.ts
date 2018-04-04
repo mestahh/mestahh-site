@@ -10,11 +10,14 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { BlogComponent } from './blog/blog.component';
 import {Router, RouterModule, Routes} from '@angular/router';
 import { MusicComponent } from './music/music.component';
+import {PostsService} from './blog/posts.service';
+import { PostPreviewComponent } from './blog/post-preview/post-preview.component';
 
 const appRoutes: Routes = [
   { path: '', component: BlogComponent},
   { path: 'blog', component: BlogComponent},
-  { path: 'music', component: MusicComponent}
+  { path: 'music', component: MusicComponent},
+  { path: 'posts/:id', component: PostItemComponent }
 ]
 
 @NgModule({
@@ -25,13 +28,14 @@ const appRoutes: Routes = [
     PostItemComponent,
     SidebarComponent,
     BlogComponent,
-    MusicComponent
+    MusicComponent,
+    PostPreviewComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [PostsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
