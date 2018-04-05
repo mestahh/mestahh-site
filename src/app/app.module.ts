@@ -13,6 +13,8 @@ import {PostsService} from './blog/posts.service';
 import {PostPreviewComponent} from './blog/post-preview/post-preview.component';
 import {AppRouterModule} from './router/app-router.module';
 import { ErrorHandlingComponent } from './error-handling/error-handling.component';
+import {AuthService} from './auth/auth.service';
+import {AuthGuardService} from './auth/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,7 @@ import { ErrorHandlingComponent } from './error-handling/error-handling.componen
     AppRouterModule,
     BrowserModule
   ],
-  providers: [PostsService],
+  providers: [PostsService, AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
