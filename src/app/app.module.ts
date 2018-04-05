@@ -12,6 +12,7 @@ import {MusicComponent} from './music/music.component';
 import {PostsService} from './blog/posts.service';
 import {PostPreviewComponent} from './blog/post-preview/post-preview.component';
 import {AppRouterModule} from './router/app-router.module';
+import { ErrorHandlingComponent } from './error-handling/error-handling.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {AppRouterModule} from './router/app-router.module';
     SidebarComponent,
     BlogComponent,
     MusicComponent,
-    PostPreviewComponent
+    PostPreviewComponent,
+    ErrorHandlingComponent
   ],
   imports: [
     AppRouterModule,
