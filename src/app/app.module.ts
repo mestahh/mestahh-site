@@ -15,6 +15,7 @@ import {AppRouterModule} from './router/app-router.module';
 import { ErrorHandlingComponent } from './error-handling/error-handling.component';
 import {AuthService} from './auth/auth.service';
 import {AuthGuardService} from './auth/auth-guard.service';
+import { LoginComponent } from './auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {AuthGuardService} from './auth/auth-guard.service';
     BlogComponent,
     MusicComponent,
     PostPreviewComponent,
-    ErrorHandlingComponent
+    ErrorHandlingComponent,
+    LoginComponent
   ],
   imports: [
     AppRouterModule,

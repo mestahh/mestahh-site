@@ -4,6 +4,9 @@ import {Post} from './post.model';
 export class PostsService {
 
   posts = [
+    new Post(4, 'Really simple authentication', `<p>I have added some really basic authentication. It is really simple, I have even stored the
+  password in the source code as it is not protecting really anything. Except the music part. Relax, I will make it available soon again. Next thing 
+  would be to prepare the DynamoDb and Cognito.</p>`, 'Mestahh', '2018-04-08'),
     new Post(3, 'First service', `<p>The first service had been introduced and I have added a couple things to make the code 
   a bit leaner. I have added some programmed routing here too. The hardest thing was that I didn't realise that the :id which I set up as a number
   was coming as a string so when finding that in the posts array I compared the string with the number and obviosly that was never true. I

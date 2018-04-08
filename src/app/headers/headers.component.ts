@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../auth/auth.service';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-headers',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeadersComponent implements OnInit {
 
-  constructor() { }
+  private authenticated = false;
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+     this.authenticated = false;
+      this.authService.loggedIn.subscribe((authenticated: boolean) => {
+        this.authenticated = authenticated;
+      });
+     // setInterval(() => {
+     //   this.authenticated = false;
+     // }, 2000);
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 }
