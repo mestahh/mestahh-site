@@ -11,6 +11,8 @@ const poolData = {
 @Injectable()
 export class AuthService {
 
+  loggedIn = new EventEmitter<boolean>();
+
   constructor(private router: Router) {
   }
 
@@ -31,9 +33,11 @@ export class AuthService {
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: (result) => {
         this.router.navigate(['/']);
+        this.loggedIn.next(true);
       },
 
       onFailure: function (err) {
+        this.loggedIn.next(false);
         alert(JSON.stringify(err));
       },
     });
@@ -46,6 +50,7 @@ export class AuthService {
 
   logout() {
     this.getAuthenticatedUser().signOut();
+    this.loggedIn.next(false);
     this.router.navigate(['/login']);
   }
 
@@ -71,5 +76,11 @@ export class AuthService {
       observer.complete();
     });
     return obs;
+  }
+
+  initAuth() {
+    this.isAuthenticated().subscribe((auth: boolean) => {
+       this.loggedIn.next(auth);
+    });
   }
 }
