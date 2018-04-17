@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {CognitoUserPool, AuthenticationDetails, CognitoUser, CognitoUserSession} from 'amazon-cognito-identity-js';
 import {Observable} from 'rxjs/Observable';
@@ -10,9 +10,6 @@ const poolData = {
 
 @Injectable()
 export class AuthService {
-
-  loggedIn = new EventEmitter<boolean>();
-  authenticated = false;
 
   constructor(private router: Router) {
   }
@@ -33,8 +30,6 @@ export class AuthService {
     const cognitoUser = new CognitoUser(userData);
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: (result) => {
-        this.authenticated = true;
-        this.loggedIn.emit(true);
         this.router.navigate(['/']);
       },
 
@@ -46,27 +41,15 @@ export class AuthService {
 
   getAuthenticatedUser(): CognitoUser {
     const userPool = new CognitoUserPool(poolData);
-
-    const currentUser = userPool.getCurrentUser();
-    return currentUser.getSession((err, session) => {
-      if (err) {
-        return;
-      } else {
-        return currentUser;
-      }
-    });
-
+    return userPool.getCurrentUser();
   }
 
   logout() {
     this.getAuthenticatedUser().signOut();
-    this.authenticated = false;
-    this.loggedIn.emit(false);
     this.router.navigate(['/login']);
   }
 
-  isAuthenticated(): Promise<boolean> {
-    console.log('isAuthenticated called');
+  isAuthenticated(): Observable<boolean> {
     const user = this.getAuthenticatedUser();
     const obs = Observable.create((observer) => {
       if (!user) {
@@ -74,6 +57,7 @@ export class AuthService {
       } else {
         user.getSession((err, session) => {
           if (err) {
+            console.log(err);
             observer.next(false);
           } else {
             if (session.isValid()) {
@@ -87,12 +71,5 @@ export class AuthService {
       observer.complete();
     });
     return obs;
-  }
-
-  initAuth() {
-    this.isAuthenticated().then(
-      (auth: boolean) => {
-        this.loggedIn.next(auth);
-      });
   }
 }
