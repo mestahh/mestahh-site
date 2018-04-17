@@ -9,7 +9,7 @@ import {Observable} from 'rxjs/Observable';
 })
 export class HeadersComponent implements OnInit {
 
-  private authenticated = false;
+  authenticated = false;
 
   constructor(private authService: AuthService) { }
 
