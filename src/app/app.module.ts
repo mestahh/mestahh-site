@@ -16,6 +16,8 @@ import { ErrorHandlingComponent } from './error-handling/error-handling.componen
 import {AuthService} from './auth/auth.service';
 import {AuthGuardService} from './auth/auth-guard.service';
 import { LoginComponent } from './auth/login/login.component';
+import {HttpModule} from '@angular/http';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { LoginComponent } from './auth/login/login.component';
   ],
   imports: [
     AppRouterModule,
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [PostsService, AuthService, AuthGuardService],
   bootstrap: [AppComponent]

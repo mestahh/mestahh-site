@@ -79,8 +79,7 @@ export class AuthService {
   }
 
   initAuth() {
-    this
-      .isAuthenticated().subscribe(
+    this.isAuthenticated().subscribe(
       (auth: boolean) => {
         this.loggedIn.next(auth);
       }

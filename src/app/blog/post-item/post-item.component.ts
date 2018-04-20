@@ -17,6 +17,9 @@ export class PostItemComponent implements OnInit {
 
   ngOnInit() {
     const postId = this.router.snapshot.params['id'];
+    // this.router.params.subscribe((id: number) => {
+    //   this.postsService.getPost(+postId)
+    // });
     this.post = this.postsService.getPost(+postId);
   }
 
