@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth/auth.service';
 import {Observable} from 'rxjs/Observable';
 
@@ -11,12 +11,14 @@ export class HeadersComponent implements OnInit {
 
   authenticated = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {
+  }
 
   ngOnInit() {
-      this.authService.loggedIn.subscribe((authenticated: boolean) => {
-        this.authenticated = authenticated;
-      });
+    this.authService.initAuth();
+    this.authService.loggedIn.subscribe((auth: boolean) => {
+      this.authenticated = auth;
+    });
   }
 
   logout() {

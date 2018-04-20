@@ -1,7 +1,8 @@
-import {EventEmitter, Injectable, Output} from '@angular/core';
+import { Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {CognitoUserPool, AuthenticationDetails, CognitoUser, CognitoUserSession} from 'amazon-cognito-identity-js';
 import {Observable} from 'rxjs/Observable';
+import {Subject} from 'rxjs/Subject';
 
 const poolData = {
   UserPoolId: 'eu-west-1_WGED4uEbi',
@@ -11,7 +12,7 @@ const poolData = {
 @Injectable()
 export class AuthService {
 
-  loggedIn = new EventEmitter<boolean>();
+  loggedIn = new Subject<boolean>();
 
   constructor(private router: Router) {
   }
@@ -62,7 +63,6 @@ export class AuthService {
       } else {
         user.getSession((err, session) => {
           if (err) {
-            console.log(err);
             observer.next(false);
           } else {
             if (session.isValid()) {
@@ -79,8 +79,11 @@ export class AuthService {
   }
 
   initAuth() {
-    this.isAuthenticated().subscribe((auth: boolean) => {
-       this.loggedIn.next(auth);
-    });
+    this
+      .isAuthenticated().subscribe(
+      (auth: boolean) => {
+        this.loggedIn.next(auth);
+      }
+    );
   }
 }
