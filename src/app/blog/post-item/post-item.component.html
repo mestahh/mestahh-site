@@ -4,7 +4,7 @@
       <div class="panel-heading"><strong>{{ post.title}}</strong></div>
       <div class="panel-body" [innerHtml]="post.body"></div>
       <div class="panel-footer">
-        <small>Created by {{ post.author}}<span class="pull-right">{{ post.createdAt }}</span></small>
+        <small>Created by {{ post.author}}<span class="pull-right">{{ post.createdAt | date}}</span></small>
       </div>
     </div>
   </div>
