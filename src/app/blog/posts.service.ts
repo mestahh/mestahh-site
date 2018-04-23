@@ -20,6 +20,7 @@ export class PostsService {
       (data: Post[]) => {
         console.log(data);
         this.storedPosts = data;
+        this.storedPosts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
         this.posts.next(data);
         console.log('posts are loaded');
       },

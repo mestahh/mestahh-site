@@ -1,20 +1,22 @@
 <div class="row">
-  <div class="col-xs-6">
+  <div class="col-xs-10">
     <h4>Create a post!</h4>
     <form (ngSubmit)="create(f)" #f="ngForm">
       <div class="row form-group">
         <div class="col-xs-12">
-          <input type="text" class="form-control" ngModel name="title" required="true">
+          <label for="title">Title</label>
+          <input type="text" class="form-control" ngModel id="title" name="title" required="true">
         </div>
       </div>
       <div class="row form-group">
         <div class="col-xs-12">
-          <textarea class="form-control" ngModel name="content" required="true"></textarea>
+          <label for="post">Post</label>
+          <textarea rows="6" class="form-control" id="post" ngModel name="content" required="true"></textarea>
         </div>
       </div>
       <div class="row form-group">
         <div class="col-xs-12">
-          <button class="btn btn-primary" type="submit">Post</button>
+          <button class="btn btn-primary" [disabled]="!f.valid" type="submit">Post</button>
         </div>
       </div>
     </form>

@@ -12,7 +12,7 @@ const appRoutes: Routes = [
   { path: '', component: BlogComponent},
   { path: 'blog', component: BlogComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'music', canActivate: [AuthGuardService], component: MusicComponent},
+  { path: 'music', component: MusicComponent},
   { path: 'posts/new', component: PostCreateComponent, canActivate: [AuthGuardService] },
   { path: 'posts/:id', component: PostItemComponent },
   { path: 'error', component: ErrorHandlingComponent},
