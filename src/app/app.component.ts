@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterContentInit, Component, OnInit} from '@angular/core';
 import {AuthService} from './auth/auth.service';
 
 @Component({
@@ -6,13 +6,18 @@ import {AuthService} from './auth/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit, AfterContentInit {
+
   constructor(private authService: AuthService) {
 
   }
 
   ngOnInit() {
+    console.log(this.authService);
     this.authService.initAuth();
+  }
+
+  ngAfterContentInit() {
   }
 
 }

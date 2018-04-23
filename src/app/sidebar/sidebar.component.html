@@ -3,6 +3,7 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <p>Github: <a href="https://github.com/mestahh/mestahh-site" target="_blank">here</a></p>
+        <p *ngIf="authenticated"><a [routerLink]="['posts', 'new']">Create blog post</a></p>
       </div>
     </div>
   </div>

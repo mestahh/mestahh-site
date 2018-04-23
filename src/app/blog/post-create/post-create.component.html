@@ -1,20 +1,20 @@
 <div class="row">
   <div class="col-xs-6">
-    <h4>You have to log in first!</h4>
-    <form (ngSubmit)="onLogin(f)" #f="ngForm">
+    <h4>Create a post!</h4>
+    <form (ngSubmit)="create(f)" #f="ngForm">
       <div class="row form-group">
         <div class="col-xs-12">
-          <input type="text" class="form-control" ngModel name="username" required="true">
+          <input type="text" class="form-control" ngModel name="title" required="true">
         </div>
       </div>
       <div class="row form-group">
         <div class="col-xs-12">
-          <input type="password" class="form-control" ngModel name="password" required="true">
+          <textarea class="form-control" ngModel name="content" required="true"></textarea>
         </div>
       </div>
       <div class="row form-group">
         <div class="col-xs-12">
-          <button class="btn btn-primary" type="submit">Login</button>
+          <button class="btn btn-primary" type="submit">Post</button>
         </div>
       </div>
     </form>

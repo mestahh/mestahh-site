@@ -15,14 +15,13 @@ export class HeadersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.initAuth();
-    this.authService.loggedIn.subscribe((auth: boolean) => {
+    this.authService.isAuthenticated().subscribe((auth: boolean) => {
       this.authenticated = auth;
     });
+    this.authService.initAuth();
   }
 
   logout() {
     this.authService.logout();
   }
-
 }

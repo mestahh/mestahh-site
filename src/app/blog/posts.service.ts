@@ -1,7 +1,9 @@
 import {Injectable } from '@angular/core';
 import {Post} from './post.model';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Subject} from 'rxjs/Subject';
+import {AuthService} from '../auth/auth.service';
+import {CognitoUserSession} from 'amazon-cognito-identity-js';
 
 @Injectable()
 export class PostsService {
@@ -9,15 +11,12 @@ export class PostsService {
   posts: Subject<Post[]> = new Subject<Post[]>();
   storedPosts: Post[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authService: AuthService) {
     this.loadPosts();
   }
 
   loadPosts() {
-    console.log('loading posts');
-    this.http.get('https://q3ycamx9j2.execute-api.eu-west-1.amazonaws.com/dev/posts', {
-      // headers: new Headers({'Authorization': session.getIdToken().getJwtToken()})
-    }).subscribe(
+    this.http.get('https://q3ycamx9j2.execute-api.eu-west-1.amazonaws.com/dev/posts').subscribe(
       (data: Post[]) => {
         console.log(data);
         this.storedPosts = data;
@@ -27,6 +26,20 @@ export class PostsService {
       (error) => {
         console.log(error);
       });
+  }
+
+  create(post: Post) {
+    this.authService.getAuthenticatedUser().getSession((err, session) => {
+      this.http.post('https://q3ycamx9j2.execute-api.eu-west-1.amazonaws.com/dev/posts', post, {
+        headers: new HttpHeaders({'Authorization': session.getIdToken().getJwtToken()})
+      }).subscribe(
+        () => { this.loadPosts();
+        },
+        (error) => {
+          console.log(error);
+        });
+    });
+
   }
 
   getPosts() {

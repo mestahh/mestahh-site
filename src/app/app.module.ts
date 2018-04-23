@@ -18,6 +18,8 @@ import {AuthGuardService} from './auth/auth-guard.service';
 import { LoginComponent } from './auth/login/login.component';
 import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
+import { PostCreateComponent } from './blog/post-create/post-create.component';
 
 @NgModule({
   declarations: [
@@ -30,12 +32,14 @@ import {HttpClientModule} from '@angular/common/http';
     MusicComponent,
     PostPreviewComponent,
     ErrorHandlingComponent,
-    LoginComponent
+    LoginComponent,
+    PostCreateComponent
   ],
   imports: [
     AppRouterModule,
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [PostsService, AuthService, AuthGuardService],
   bootstrap: [AppComponent]
