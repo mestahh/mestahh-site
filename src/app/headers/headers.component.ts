@@ -18,7 +18,7 @@ export class HeadersComponent implements OnInit {
     this.authService.loggedIn.subscribe((auth: boolean) => {
       this.authenticated = auth;
     });
-    this.authService.initAuth();
+    this.authService.authenticate();
   }
 
   logout() {

@@ -78,10 +78,9 @@ export class AuthService {
     return obs;
   }
 
-  initAuth() {
+  authenticate() {
     this.isAuthenticated().subscribe(
       (auth: boolean) => {
-        console.log(auth);
         this.loggedIn.next(auth);
       }
     );

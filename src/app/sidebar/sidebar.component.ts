@@ -17,6 +17,6 @@ export class SidebarComponent implements OnInit {
     this.authService.loggedIn.subscribe((auth: boolean) => {
       this.authenticated = auth;
     });
-    this.authService.initAuth();
+    this.authService.authenticate();
   }
 }
