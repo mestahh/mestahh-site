@@ -7,6 +7,7 @@ import {ErrorHandlingComponent} from '../error-handling/error-handling.component
 import {AuthGuardService} from '../auth/auth-guard.service';
 import {LoginComponent} from '../auth/login/login.component';
 import {PostCreateComponent} from '../blog/post-create/post-create.component';
+import {PostItemResolver} from '../blog/post-item/post-item.resolver';
 
 const appRoutes: Routes = [
   { path: '', component: BlogComponent},
@@ -14,7 +15,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'music', component: MusicComponent},
   { path: 'posts/new', component: PostCreateComponent, canActivate: [AuthGuardService] },
-  { path: 'posts/:id', component: PostItemComponent },
+  { path: 'posts/:id', component: PostItemComponent, resolve: { post: PostItemResolver }},
   { path: 'error', component: ErrorHandlingComponent},
   { path: '**', redirectTo: '/error'}
 ]

@@ -17,7 +17,7 @@ export class PostCreateComponent implements OnInit {
   }
 
   create(form: NgForm) {
-    const post = new Post(123, form.value.title, form.value.content, 'mestahh', '2018-04-23');
+    const post = new Post(123, form.value.title, form.value.content, 'mestahh', new Date().toDateString());
     this.postsService.create(post);
     this.router.navigate(['/']);
   }

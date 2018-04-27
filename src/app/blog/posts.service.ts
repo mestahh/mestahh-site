@@ -4,29 +4,18 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Subject} from 'rxjs/Subject';
 import {AuthService} from '../auth/auth.service';
 import {CognitoUserSession} from 'amazon-cognito-identity-js';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class PostsService {
 
-  posts: Subject<Post[]> = new Subject<Post[]>();
-  storedPosts: Post[] = [];
+  postCreated: Subject<Post> = new Subject<Post>();
 
   constructor(private http: HttpClient, private authService: AuthService) {
-    this.loadPosts();
   }
 
   loadPosts() {
-    this.http.get('https://q3ycamx9j2.execute-api.eu-west-1.amazonaws.com/dev/posts').subscribe(
-      (data: Post[]) => {
-        console.log(data);
-        this.storedPosts = data;
-        this.storedPosts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-        this.posts.next(data);
-        console.log('posts are loaded');
-      },
-      (error) => {
-        console.log(error);
-      });
+    return this.http.get('https://q3ycamx9j2.execute-api.eu-west-1.amazonaws.com/dev/posts');
   }
 
   create(post: Post) {
@@ -34,8 +23,7 @@ export class PostsService {
       this.http.post('https://q3ycamx9j2.execute-api.eu-west-1.amazonaws.com/dev/posts', post, {
         headers: new HttpHeaders({'Authorization': session.getIdToken().getJwtToken()})
       }).subscribe(
-        () => { this.loadPosts();
-        },
+        () => { this.postCreated.next(post); },
         (error) => {
           console.log(error);
         });
@@ -43,13 +31,7 @@ export class PostsService {
 
   }
 
-  getPosts() {
-    return this.storedPosts;
-  }
-
-  getPost(postId: number) {
-    return this.storedPosts.find((x: Post) => {
-      return +x.id === postId;
-    });
+  getPost(postId: number): Observable<any> {
+    return this.http.get('https://q3ycamx9j2.execute-api.eu-west-1.amazonaws.com/dev/posts/' + postId);
   }
 }

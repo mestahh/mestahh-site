@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Post} from '../post.model';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Data} from '@angular/router';
 import {PostsService} from '../posts.service';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-post-item',
@@ -11,16 +12,21 @@ import {PostsService} from '../posts.service';
 export class PostItemComponent implements OnInit {
 
   post: Post;
+  authenticated = false;
 
-  constructor(private router: ActivatedRoute, private postsService: PostsService) {
+  constructor(private route: ActivatedRoute, private router: ActivatedRoute, private postsService: PostsService, private authService: AuthService) {
   }
 
   ngOnInit() {
-    const postId = this.router.snapshot.params['id'];
-    // this.router.params.subscribe((id: number) => {
-    //   this.postsService.getPost(+postId)
-    // });
-    this.post = this.postsService.getPost(+postId);
+    this.route.data.subscribe((data: Data) => {
+      this.post = data['post'][0];
+    });
+    this.authService.loggedIn.subscribe(
+      (auth: boolean) => {
+        this.authenticated = auth;
+      }
+    );
+    this.authService.authenticate();
   }
 
 }

@@ -20,6 +20,7 @@ import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { PostCreateComponent } from './blog/post-create/post-create.component';
+import {PostItemResolver} from './blog/post-item/post-item.resolver';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { PostCreateComponent } from './blog/post-create/post-create.component';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [PostsService, AuthService, AuthGuardService],
+  providers: [PostsService, AuthService, AuthGuardService, PostItemResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule {
