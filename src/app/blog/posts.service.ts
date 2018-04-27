@@ -10,6 +10,7 @@ import {Observable} from 'rxjs/Observable';
 export class PostsService {
 
   postCreated: Subject<Post> = new Subject<Post>();
+  postEdited: Subject<Post> = new Subject<Post>();
 
   constructor(private http: HttpClient, private authService: AuthService) {
   }
@@ -24,6 +25,19 @@ export class PostsService {
         headers: new HttpHeaders({'Authorization': session.getIdToken().getJwtToken()})
       }).subscribe(
         () => { this.postCreated.next(post); },
+        (error) => {
+          console.log(error);
+        });
+    });
+
+  }
+
+  edit(post: Post) {
+    this.authService.getAuthenticatedUser().getSession((err, session) => {
+      this.http.put('https://q3ycamx9j2.execute-api.eu-west-1.amazonaws.com/dev/posts/' + post.postId, post, {
+        headers: new HttpHeaders({'Authorization': session.getIdToken().getJwtToken()})
+      }).subscribe(
+        () => { this.postEdited.next(post); },
         (error) => {
           console.log(error);
         });

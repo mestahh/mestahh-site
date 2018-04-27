@@ -21,6 +21,9 @@ export class PostItemComponent implements OnInit {
     this.route.data.subscribe((data: Data) => {
       this.post = data['post'][0];
     });
+    this.postsService.postEdited.subscribe((post: Post) => {
+      this.post = post;
+    });
     this.authService.loggedIn.subscribe(
       (auth: boolean) => {
         this.authenticated = auth;

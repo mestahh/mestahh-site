@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Post} from '../post.model';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-post-preview',
@@ -9,10 +10,17 @@ import {Post} from '../post.model';
 export class PostPreviewComponent implements OnInit {
 
   @Input() post: Post;
+  authenticated = false;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.loggedIn.subscribe(
+      (auth: boolean) => {
+        this.authenticated = auth;
+      }
+    );
+    this.authService.authenticate();
   }
 
 }

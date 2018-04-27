@@ -21,6 +21,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { PostCreateComponent } from './blog/post-create/post-create.component';
 import {PostItemResolver} from './blog/post-item/post-item.resolver';
+import { PostEditComponent } from './blog/post-edit/post-edit.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {PostItemResolver} from './blog/post-item/post-item.resolver';
     PostPreviewComponent,
     ErrorHandlingComponent,
     LoginComponent,
-    PostCreateComponent
+    PostCreateComponent,
+    PostEditComponent
   ],
   imports: [
     AppRouterModule,

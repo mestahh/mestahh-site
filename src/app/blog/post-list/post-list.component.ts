@@ -17,6 +17,7 @@ export class PostListComponent implements OnInit {
   ngOnInit() {
     this.postsService.loadPosts().subscribe((posts: Post[]) => {
       this.posts = posts;
+      this.posts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
     });
     this.postsService.postCreated.subscribe((post: Post) => {
       this.posts.push(post);

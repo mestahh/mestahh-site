@@ -1,12 +1,12 @@
 export class Post {
-  id: number;
+  postId: number;
   title: string;
   body: string;
   author: string;
   createdAt: string;
 
-  constructor(id: number, title: string, body: string, author: string, createdAt: string) {
-    this.id = id;
+  constructor(postId: number, title: string, body: string, author: string, createdAt: string) {
+    this.postId = postId;
     this.title = title;
     this.body = body;
     this.author = author;

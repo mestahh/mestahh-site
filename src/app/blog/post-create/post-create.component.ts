@@ -14,6 +14,7 @@ export class PostCreateComponent implements OnInit {
   constructor(private postsService: PostsService, private router: Router) { }
 
   ngOnInit() {
+    console.log('initiated');
   }
 
   create(form: NgForm) {
