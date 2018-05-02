@@ -22,6 +22,7 @@ import {FormsModule} from '@angular/forms';
 import { PostCreateComponent } from './blog/post-create/post-create.component';
 import {PostItemResolver} from './blog/post-item/post-item.resolver';
 import { PostEditComponent } from './blog/post-edit/post-edit.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { PostEditComponent } from './blog/post-edit/post-edit.component';
     ErrorHandlingComponent,
     LoginComponent,
     PostCreateComponent,
-    PostEditComponent
+    PostEditComponent,
+    AboutComponent
   ],
   imports: [
     AppRouterModule,

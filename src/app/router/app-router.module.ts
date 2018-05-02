@@ -9,10 +9,12 @@ import {LoginComponent} from '../auth/login/login.component';
 import {PostCreateComponent} from '../blog/post-create/post-create.component';
 import {PostItemResolver} from '../blog/post-item/post-item.resolver';
 import {PostEditComponent} from '../blog/post-edit/post-edit.component';
+import {AboutComponent} from '../about/about.component';
 
 const appRoutes: Routes = [
-  { path: '', component: BlogComponent},
+  { path: '', component: AboutComponent},
   { path: 'blog', component: BlogComponent},
+  { path: 'about', component: AboutComponent},
   { path: 'login', component: LoginComponent},
   { path: 'music', component: MusicComponent},
   { path: 'posts/new', component: PostCreateComponent, canActivate: [AuthGuardService] },
