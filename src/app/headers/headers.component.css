@@ -1,4 +1,44 @@
 .row {
-  background-color: aliceblue;
-  padding-top: 25px;
+  margin:0;
+  max-width: 1140px;
 }
+
+.navbar-default {
+  background: none;
+  border: none;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: #faf9fa;
+}
+
+.navbar-nav>.active>a {
+  background: none;
+  text-decoration: underline darkorange;
+}
+
+header {
+  background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("../../assets/background.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+
+header h1 {
+  font-size: 300%;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  word-spacing: 3px;
+  color: #b5bcc2;
+}
+
+.hero-textbox {
+  position: absolute;
+  width: 1140px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
