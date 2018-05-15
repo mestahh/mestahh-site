@@ -1,6 +1,7 @@
-.row {
-  margin:0;
-  max-width: 1140px;
+.navbar-nav li a:hover,
+.navbar-nav li a:active {
+  border-bottom: 2px solid darkorange;
+  transition: border-bottom 0.2s;
 }
 
 .navbar-default {
@@ -12,33 +13,29 @@
   color: #faf9fa;
 }
 
-.navbar-nav>.active>a {
+.navbar-nav > .active > a {
   background: none;
-  text-decoration: underline darkorange;
+  border-bottom: 2px solid darkorange;
 }
 
 header {
-  background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("../../assets/background.jpg");
-  background-position: center;
+  background-image:  linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("../../assets/background.jpg");
   background-size: cover;
-  height: 100vh;
+  background-position: center;
+  height: 65vh;
 }
 
 header h1 {
   font-size: 300%;
-  font-weight: 300;
+  font-weight: 100;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   word-spacing: 3px;
-  color: #b5bcc2;
+  color: #ffffff;
 }
 
 .hero-textbox {
-  position: absolute;
-  width: 1140px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin-top: 9em;
 }
 
 

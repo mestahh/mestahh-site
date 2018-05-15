@@ -32,4 +32,8 @@ export class PostItemComponent implements OnInit {
     this.authService.authenticate();
   }
 
+  delete() {
+    this.postsService.deletePost(this.post.postId);
+  }
+
 }

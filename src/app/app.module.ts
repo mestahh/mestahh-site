@@ -23,6 +23,7 @@ import { PostCreateComponent } from './blog/post-create/post-create.component';
 import {PostItemResolver} from './blog/post-item/post-item.resolver';
 import { PostEditComponent } from './blog/post-edit/post-edit.component';
 import { AboutComponent } from './about/about.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AboutComponent } from './about/about.component';
     LoginComponent,
     PostCreateComponent,
     PostEditComponent,
-    AboutComponent
+    AboutComponent,
+    FooterComponent
   ],
   imports: [
     AppRouterModule,

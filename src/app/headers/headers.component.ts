@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AuthService} from '../auth/auth.service';
 import {Observable} from 'rxjs/Observable';
 
@@ -10,6 +10,7 @@ import {Observable} from 'rxjs/Observable';
 export class HeadersComponent implements OnInit {
 
   authenticated = false;
+  @Input('content') content;
 
   constructor(private authService: AuthService) {
   }
@@ -23,5 +24,9 @@ export class HeadersComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  click() {
+    this.content.scrollIntoView();
   }
 }

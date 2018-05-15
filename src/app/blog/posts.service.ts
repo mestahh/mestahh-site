@@ -48,4 +48,8 @@ export class PostsService {
   getPost(postId: number): Observable<any> {
     return this.http.get('https://q3ycamx9j2.execute-api.eu-west-1.amazonaws.com/dev/posts/' + postId);
   }
+
+  deletePost(postId: number) {
+    console.log('delete ' + postId);
+  }
 }

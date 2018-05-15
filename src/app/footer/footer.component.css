@@ -1,0 +1,20 @@
+.row {
+  background-color: #1d2741;
+  color: #faf9fa;
+  margin: 0px;
+  padding: 2em;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.copyright {
+  font-weight: lighter;
+}

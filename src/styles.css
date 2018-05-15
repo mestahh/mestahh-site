@@ -12,3 +12,27 @@ body {
 * {
   box-sizing: border-box;
 }
+
+h2 {
+  margin-bottom: 1em;
+}
+
+.btn {
+  background-color: darkorange;
+  border:1px solid darkorange;
+  margin-right: 15px;
+  margin-top: 15px;
+  color: #fff;
+  border-radius: 15px;
+  padding-right: 25px;
+  padding-left: 25px;
+
+}
+
+.btn:hover {
+  background-color: #dd7900;
+  border:1px solid #dd7900;
+  transition: background-color 0.2s;
+  color: #fff;
+}
+
