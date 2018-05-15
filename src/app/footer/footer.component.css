@@ -7,6 +7,12 @@
 
 a {
   text-decoration: none;
+  color: #888;
+}
+
+a:hover {
+  color: #fff;
+  transition: background-color 0.2s;
 }
 
 ul li {
@@ -17,4 +23,12 @@ ul li {
 
 .copyright {
   font-weight: lighter;
+}
+
+.social-icons li:last-child {
+  margin-right: 0px;
+}
+
+.small-menu ul{
+  padding-left: 0px;
 }
