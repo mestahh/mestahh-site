@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Post} from '../post.model';
-import {ActivatedRoute, Data} from '@angular/router';
+import {ActivatedRoute, Data, Router} from '@angular/router';
 import {PostsService} from '../posts.service';
 import {AuthService} from '../../auth/auth.service';
 
@@ -14,7 +14,7 @@ export class PostItemComponent implements OnInit {
   post: Post;
   authenticated = false;
 
-  constructor(private route: ActivatedRoute, private router: ActivatedRoute, private postsService: PostsService, private authService: AuthService) {
+  constructor(private route: ActivatedRoute, private router: Router, private postsService: PostsService, private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -34,6 +34,7 @@ export class PostItemComponent implements OnInit {
 
   delete() {
     this.postsService.deletePost(this.post.postId);
+    this.router.navigate(['/blog']);
   }
 
 }

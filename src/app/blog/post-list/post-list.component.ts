@@ -22,5 +22,8 @@ export class PostListComponent implements OnInit {
     this.postsService.postCreated.subscribe((post: Post) => {
       this.posts.push(post);
     });
+    this.postsService.postDeleted.subscribe((postId: number) => {
+      this.posts = this.posts.filter((item) => item.postId !== postId );
+    });
   }
 }

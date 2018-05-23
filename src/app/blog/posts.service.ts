@@ -1,4 +1,4 @@
-import {Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Post} from './post.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Subject} from 'rxjs/Subject';
@@ -11,6 +11,7 @@ export class PostsService {
 
   postCreated: Subject<Post> = new Subject<Post>();
   postEdited: Subject<Post> = new Subject<Post>();
+  postDeleted: Subject<number> = new Subject<number>();
 
   constructor(private http: HttpClient, private authService: AuthService) {
   }
@@ -24,7 +25,9 @@ export class PostsService {
       this.http.post('https://q3ycamx9j2.execute-api.eu-west-1.amazonaws.com/dev/posts', post, {
         headers: new HttpHeaders({'Authorization': session.getIdToken().getJwtToken()})
       }).subscribe(
-        () => { this.postCreated.next(post); },
+        () => {
+          this.postCreated.next(post);
+        },
         (error) => {
           console.log(error);
         });
@@ -37,7 +40,9 @@ export class PostsService {
       this.http.put('https://q3ycamx9j2.execute-api.eu-west-1.amazonaws.com/dev/posts/' + post.postId, post, {
         headers: new HttpHeaders({'Authorization': session.getIdToken().getJwtToken()})
       }).subscribe(
-        () => { this.postEdited.next(post); },
+        () => {
+          this.postEdited.next(post);
+        },
         (error) => {
           console.log(error);
         });
@@ -50,6 +55,17 @@ export class PostsService {
   }
 
   deletePost(postId: number) {
-    console.log('delete ' + postId);
+    this.authService.getAuthenticatedUser().getSession((err, session) => {
+      this.http.delete('https://q3ycamx9j2.execute-api.eu-west-1.amazonaws.com/dev/posts/' + postId, {
+        headers: new HttpHeaders({'Authorization': session.getIdToken().getJwtToken()})
+      }).subscribe(
+        () => {
+          console.log('deleted');
+          this.postDeleted.next(postId);
+        },
+        (error) => {
+          console.log(error);
+        });
+    });
   }
 }
