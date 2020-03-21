@@ -24,6 +24,7 @@ import {PostItemResolver} from './blog/post-item/post-item.resolver';
 import { PostEditComponent } from './blog/post-edit/post-edit.component';
 import { AboutComponent } from './about/about.component';
 import { FooterComponent } from './footer/footer.component';
+import { MusicService } from './services/music.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { FooterComponent } from './footer/footer.component';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [PostsService, AuthService, AuthGuardService, PostItemResolver],
+  providers: [PostsService, AuthService, AuthGuardService, PostItemResolver, MusicService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,12 +1,26 @@
 <div class="row">
   <div class="col-xs-12 col-md-12 col-sx-12">
-    <h2>Beware, music will be here!</h2>
-    <p>Here is a cover from me for a Hungarian song from the 90-es:
-      <a target="_blank" href="https://s3-eu-west-1.amazonaws.com/mestahh-music/mestahh/magyar_nagyonjok/track1.mp3">Hip hop boys</a></p>
+    <h2>Zenék</h2>
+    <p>Hello, itt találhatóak a kis zenéim. 
+      Albumokba, playlistekbe szedve. Igyekszem feltölteni mindent, rendezetten. Azért nem soundcloud, mert már túl sok van és nem akarok ezért fizetni, amikor úgymond programozó vagyok. Viszont, amint látszik, nem vagyok se grafikus, se UI designer. Jó mulatást, maradjatok otthon, kitartás!</p><p>Üdv, Mesti</p>
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-12 col-md-12 col-lg-12">
-    <p>You can find majority of my music on soundcloud now: <a href="http://soundcloud.com/mestahh" target="_blank">http://soundcloud.com/mestahh</a></p>
+  <div class="col-xs-12 col-md-12 col-sx-12" *ngFor="let playlist of playlists">
+    <!-- <h4 data-toggle="collapse" data-target="#guitar_backing_tracks">{{ playlist.title }}</h4> -->
+    <a class="btn btn-primary" data-toggle="collapse" href="#{{ playlist.id }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+      {{ playlist.title }}
+    </a>
+    <div id="{{ playlist.id }}" class="collapse">
+      <div class="row" *ngFor="let song of playlist.songs">
+        <hr>
+        <div class="col-lg-6">{{ song.title }}</div>
+        <div class="col-lg-6"><audio controls preload="metadata" style=" width:300px;">
+          <source src="{{ song.url }}" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio></div>
+        
+      </div>
+    </div>
   </div>
 </div>
